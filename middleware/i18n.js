@@ -47,19 +47,14 @@ export default ({ app, store }) => {
             locale: localeCountry[countryId],
             fallbackLocale: 'en',
             messages: {
-                // 'en': app.$axios.get('/api/LabelProvider/label/en.json'),
             }
         });
 
         console.log("ok4" + app.$axios.get('/api/LabelProvider/label/en.json'))
-
-        app.i18n.path = (link) => {
-            if (app.i18n.locale === app.i18n.fallbackLocale) {
-                return `/${link}`;
-            }
-            return `/${app.i18n.locale}/${link}`;
-        }
-
         console.log("ok3 locale:" + localeCountry[countryId])
     }
+
+
+
+
 }
