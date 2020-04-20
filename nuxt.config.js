@@ -12,23 +12,28 @@ module.exports = {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {  rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/gridlex/2.7.1/gridlex.min.css'}
     ]
   },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#444',height:"2px",duration:5000 },
   /*
   ** Global CSS
   */
   css: [
+    'bulma',
+    './assets/sass/web.sass',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/i18n.js',
+    { src: '~/plugins/gsap.js', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -42,25 +47,14 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     '@nuxtjs/bulma',
     '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    '@nuxtjs/style-resources',
+    
   ],
   axios: {
     proxy: true
   },
   proxy: {
-    // '/ipInfo': {
-    //   target: 'https://v4-be-dev.moshi.com/api/SiteInfo/ip-info',
-    //   changeOrigin: true,
-    //   pathRewrite: {
-    //     '^/api/': ''
-    //   }
-    // },
-    // '/getCountry': {
-    //   target: 'https://v4-be-dev.moshi.com/api/SiteInfo/GetCountry',
-    //   changeOrigin: true,
-    //   pathRewrite: {
-    //     '^/api': ''
-    //   }
     '/api': {
       target: 'https://v4-be-dev.moshi.com/api/',
       changeOrigin: true,
@@ -73,6 +67,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['vue-i18n'],
     postcss: {
       preset: {
         features: {
@@ -88,12 +83,31 @@ module.exports = {
   },
   router: {
     middleware: 'i18n',
-    routes: [
-      {
-        name: 'lang',
-        path: '/:lang',
-        component: '_lang/index.vue'
-      }
-    ]
-  }
+    linkExactActiveClass: 'active-link',
+    routes: [{
+      path: '/:lang',
+      children: [
+        {
+          path: 'home',
+          component: '_lang/index.vue'
+        },
+        {
+          path: 'connect',
+          component: '_lang/connect.vue'
+        },
+        {
+          path: 'protect',
+          component: '_lang/protect.vue'
+        },
+        {
+          path: 'product',
+          component: '_lang/product.vue'
+        },
+      ]
+    }]
+  },
+  transition: {
+    name: 'layout',
+    mode: 'out-in'
+  },
 }
