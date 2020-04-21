@@ -4,7 +4,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-    SET_LANG(state ,locale) {
+    SET_LANG(state) {
         this.$axios.$get("/api/SiteInfo/ip-info").then(rep => rep.countryId).then((res)=>{
             this.$axios.$get("/api/SiteInfo/getCountry", {
                 headers: {
@@ -12,17 +12,12 @@ export const mutations = {
                 }
             })
             .then((res)=>{
-                let country = res.countryId.toLowerCase();
-                state.locale = country;
-
-                let current = state.locale; 
-
-                if (state.locales.indexOf(current) !== -1) {
-                    state.locale = current
-                }
+                state.locale = res.countryId.toLowerCase();
             })
             .catch(err=>console.log(err));
-        });
+          });
+        
+
       }
 
     

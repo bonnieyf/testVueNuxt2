@@ -1,6 +1,6 @@
 <template>
-  <div class="txt-template fullwidth height80">
-    <div class="col-xs-12 col-5">
+  <div class="txt-template fullwidth height80 grid">
+    <div class="col-12">
       <div class="txt-info color-white txt-align-right">
         <h3>{{title}}</h3>
         <p>{{msg}}</p>
@@ -15,7 +15,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
   export default {

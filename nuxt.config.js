@@ -85,25 +85,29 @@ module.exports = {
     middleware: 'i18n',
     linkExactActiveClass: 'active-link',
     routes: [{
-      path: '/:lang',
-      children: [
-        {
-          path: 'home',
-          component: '_lang/index.vue'
-        },
-        {
-          path: 'connect',
-          component: '_lang/connect.vue'
-        },
-        {
-          path: 'protect',
-          component: '_lang/protect.vue'
-        },
-        {
-          path: 'product',
-          component: '_lang/product.vue'
-        },
-      ]
+      path: '/:lang/',
+      name: 'home',
+      component: '_lang/index.vue'
+    },
+    {
+      path: '/:lang/connect',
+      name: 'connect',
+      component: '_lang/connect.vue'
+    },
+    {
+      path: '/:lang/protect',
+      name: 'protect',
+      component: '_lang/protect.vue'
+    },
+    {
+      path: '/:lang/product',
+      name: 'product',
+      component: '_lang/product.vue',
+    },
+    {
+      path: '/:lang/type/:id',
+      name: 'typeid',
+      component: '_lang/type/_id.vue',
     }]
   },
   transition: {

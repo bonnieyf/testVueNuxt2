@@ -1,14 +1,15 @@
 
+
 export default function ({ 
   isHMR, app, store, route, params, error, redirect 
 }) {
   if (isHMR) {
     return;
   }
-  else if (!params.lang) { 
-    return redirect('/en'+route.fullPath);
+  else if (store.state.locales.indexOf(route.params.lang) == -1) { 
+      return redirect(`/${store.state.locale}`);
   }
-  const locale = params.lang || 'en'; 
-  store.commit('SET_LANG',locale);
-  app.i18n.locale = store.state.locale;
+
+  store.commit('SET_LANG');
+
 }

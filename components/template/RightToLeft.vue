@@ -1,5 +1,5 @@
 <template>
-  <div class="txt-template right2left height70">
+  <div class="txt-template right2left height70 grid">
     <div class="col-8">
       <div class="txt-img">
         <img src="~assets/imgs/template-img2.jpg" :alt="msg">

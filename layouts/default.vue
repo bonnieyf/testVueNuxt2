@@ -2,15 +2,15 @@
   <div id="container">
     <Header />
     <div class="init-msg">
-      <!-- <h1 class="title">{{ $t("About.AboutUs")}}</h1>
-      <h2 class="subtitle">{{ $t("About.AboutUsDesc") }}</h2> -->
+      <h1 class="title">{{$t('Home.Banner1Title')}}</h1>
+      <h2 class="subtitle">{{$t('Home.Banner1Subtitle')}}</h2>
 
+      
       <div class="links">
-          <nuxt-link :to="localePath('/')" class="btn-sweep">A</nuxt-link>
-          <nuxt-link :to="localePath('/protect')" class="btn-sweep">B</nuxt-link>
-          <nuxt-link :to="localePath('/connect')" class="btn-sweep">C</nuxt-link>
-          <nuxt-link :to="localePath('/product')" class="btn-sweep">D</nuxt-link>
-          
+          <router-link :to="{ name: 'lang'}" class="btn-sweep">Home</router-link>
+          <router-link :to="{ name: 'lang-protect'}" class="btn-sweep">{{$t('Home.Category1')}}</router-link>
+          <router-link :to="{ name: 'lang-connect'}" class="btn-sweep">{{$t('Home.Category2')}}</router-link>
+          <router-link :to="{ name: 'lang-product'}" class="btn-sweep">{{$t('Home.Category3')}}</router-link>
       </div>
     </div>
     <nuxt />
