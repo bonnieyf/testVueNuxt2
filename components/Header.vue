@@ -46,10 +46,10 @@
       </g>
     </svg>
 
-    <!-- <nav class="lang">
-      <nuxt-link :to="switchLocalePath('en-us')">English</nuxt-link>/
-      <nuxt-link :to="switchLocalePath('zh-hant')">中文</nuxt-link>
-    </nav> -->
+    <nav class="lang">
+      <router-link :to="`/us`" @click="store.commit('SET_LANG','us')">English</router-link>/
+      <router-link :to="`/tw`" @click="store.commit('SET_LANG','tw')">中文</router-link>
+    </nav>
   </header>
 
   

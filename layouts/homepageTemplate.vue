@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <component :is="item.template" v-for="item in this.data.components" :key="item.id" :title="item.title" :msg="item.description"></component>
+    <component :is="item.template" v-for="item in this.data.components" :key="item.id" :title="$t('Home.Banner1Title')" :msg="$t('Home.Banner1Subtitle')"></component>
   </div>
 </template>
 
