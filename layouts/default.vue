@@ -1,7 +1,7 @@
 <template>
   <div id="container">
     <Header />
-    <div class="init-msg">
+    <!-- <div class="init-msg">
       <h1 class="title">{{$t('Home.Banner1Title')}}</h1>
       <h2 class="subtitle">{{$t('Home.Banner1Subtitle')}}</h2>
       
@@ -11,7 +11,23 @@
           <router-link :to="{ name: 'lang-connect'}" class="btn-sweep">{{$t('Home.Category2')}}</router-link>
           <router-link :to="{ name: 'lang-product'}" class="btn-sweep">{{$t('Home.Category3')}}</router-link>
       </div>
+    </div> -->
+
+    <div class="init-msg">
+      <h1 class="title">aaaa</h1>
+      <h2 class="subtitle">aaaa</h2>
+      
+      <div class="links">
+          <nuxt-link :to="localePath('/')" class="btn-sweep">Home</nuxt-link>
+          <nuxt-link :to="localePath('/protect')" class="btn-sweep">protect</nuxt-link>
+          <nuxt-link :to="localePath('/connect')" class="btn-sweep">connect</nuxt-link>
+          <nuxt-link :to="localePath('/product')" class="btn-sweep">product</nuxt-link>
+      </div>
     </div>
+
+
+    
+    
     <nuxt />
 
     <Footer/>

@@ -1,4 +1,3 @@
-
 module.exports = {
   mode: 'universal',
   /*
@@ -32,8 +31,8 @@ module.exports = {
   */
   plugins: [
     '~/plugins/axios',
-    '~/plugins/i18n.js',
     { src: '~/plugins/gsap.js', mode: 'client' },
+    { src: '~plugins/i18n.js' }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -44,13 +43,35 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
-    '@nuxtjs/bulma',
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
-    '@nuxtjs/style-resources',
-    
+    ['nuxt-i18n', {
+      locales: [
+        {
+          name: 'zh',
+          code: 'tw',
+          iso: 'zh-hant',
+          file: 'tw.js'
+        },
+        {
+          name: 'en',
+          code: 'en',
+          iso: 'en-us',
+          file: 'en.js'
+        },
+    ],
+    baseUrl: 'https://www.moshi.com/',
+    seo: true,
+    langDir: 'locales/',
+    defaultLocale: 'tw',
+    vueI18nLoader: true,
+    lazy: true,
+    }]
   ],
+  router: {
+    middleware: ['locale-redirect'],
+    linkExactActiveClass: 'active-link',
+  },
   axios: {
     proxy: true
   },
@@ -67,7 +88,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    vendor: ['vue-i18n'],
+    transpile: ['vue-notifications'],
     postcss: {
       preset: {
         features: {
@@ -80,35 +101,6 @@ module.exports = {
     */
     extend(config, ctx) {
     }
-  },
-  router: {
-    middleware: 'i18n',
-    linkExactActiveClass: 'active-link',
-    routes: [{
-      path: '/:lang/',
-      name: 'home',
-      component: '_lang/index.vue'
-    },
-    {
-      path: '/:lang/connect',
-      name: 'connect',
-      component: '_lang/connect.vue'
-    },
-    {
-      path: '/:lang/protect',
-      name: 'protect',
-      component: '_lang/protect.vue'
-    },
-    {
-      path: '/:lang/product',
-      name: 'product',
-      component: '_lang/product.vue',
-    },
-    {
-      path: '/:lang/type/:id',
-      name: 'typeid',
-      component: '_lang/type/_id.vue',
-    }]
   },
   transition: {
     name: 'layout',
