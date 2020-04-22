@@ -60,12 +60,8 @@ module.exports = {
           file: 'en.js'
         },
     ],
-    baseUrl: 'https://www.moshi.com/',
-    seo: true,
-    langDir: 'locales/',
     defaultLocale: 'tw',
-    vueI18nLoader: true,
-    lazy: true,
+    strategy: 'prefix_except_default',
     }]
   ],
   router: {
