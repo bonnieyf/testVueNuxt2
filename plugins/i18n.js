@@ -8,12 +8,15 @@ export default ({ app, store }) => {
 
   app.i18n = new VueI18n({
     locale: loadedLanguages,
-    fallbackLocale: 'en',
+    fallbackLocale: 'us',
   });
+
+  // if(process.server){
 
   app.$axios.get(`/api/LabelProvider/label/${loadedLanguages}.json`).then((res)=>{
     app.i18n.setLocaleMessage(loadedLanguages,res.data)
   });
+  // }
   
   app.i18n.path = (link) => {
     if (app.i18n.locale === app.i18n.fallbackLocale) {

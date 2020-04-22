@@ -4,7 +4,6 @@
     <div class="init-msg">
       <h1 class="title">{{$t('Home.Banner1Title')}}</h1>
       <h2 class="subtitle">{{$t('Home.Banner1Subtitle')}}</h2>
-
       
       <div class="links">
           <router-link :to="{ name: 'lang'}" class="btn-sweep">Home</router-link>

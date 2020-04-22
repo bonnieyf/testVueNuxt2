@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import homepageTemplate from "~/layouts/homepageTemplate";
 
 export default {
