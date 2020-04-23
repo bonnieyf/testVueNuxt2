@@ -5,6 +5,7 @@ export const state = () => ({
     localesId: [],
     locales: [],
     locale: "en",
+    i18nJSON:''
 })
 
 
@@ -18,6 +19,9 @@ export const getters = {
     GET_LANGUAGES : state => {
         return state.languages
     },
+    GET_I18NJSON: state=> {
+        return state.i18nJSON;
+    }
 }
 
 export const mutations = {
@@ -34,15 +38,13 @@ export const mutations = {
         state.locales = payload.localesArray;
         state.localesId = payload.localesIdArray;
     },
-    SET_CURRENT_LOCALES:(state)=>{
-        let currentLocation = state.countryId;
-        let countries = state.languages;
-
-        let result = countries.filter((item,index)=>{
-            return item[index].countryCode
-        })
-        console.log(result)
+    SET_LOCALE: (state ,payload) =>{
+        state.locale = payload;
+    },
+    SET_I18NJSON:(state,payload)=>{
+        state.i18nJSON = payload;
     }
+    
 }
 
 
@@ -59,7 +61,6 @@ export const actions = {
             }
         }).then(rep => {
             commit('SET_SITEINFO_GET_COUNTRY',rep.data);
-            commit('SET_CURRENT_LOCALES',rep.data);
         });
         
     },
@@ -71,10 +72,29 @@ export const actions = {
     FILTER_COUNTRY({state,commit}){
         let localesArray = [];
         let localesIdArray = [];
-        state.languages.forEach(function(item) {
+        state.languages.forEach(item => {
             localesArray.push(item.langCode);
             localesIdArray.push(item.lanId);
         });
         commit('SET_LOCALES',{localesArray,localesIdArray})
+    },
+    CURRENT_LOCALES({state,commit}){
+        let currentLocation = state.siteInfoGetCountry.countryId;
+        let countries = state.languages;
+
+        let result;
+        
+        countries.filter(item=>{
+            if(item.countryCode == currentLocation){
+                result = item.langCode
+            }
+        });
+        commit('SET_LOCALE',result);
+
+    },
+    async I18NJSON({state,commit}){
+        await this.$axios.get(`/api/LabelProvider/label/${state.locale}.json`).then(rep => {
+            commit('SET_I18NJSON',rep.data);
+        });
     }
 }

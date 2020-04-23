@@ -4,12 +4,9 @@ export default function ({
   if (isHMR) {
     return;
   }
-  else if (store.state.locales.indexOf(route.params.lang) == -1) { 
+  else if (store.state.locales.indexOf(route.params.lang) == -1) {
       return redirect(`/${store.state.locale}`);
   }
-  
-  // console.log('middleware')
-  // store.dispatch('SITEINFO')
-  // store.commit('SET_LANG');
+
 
 }
