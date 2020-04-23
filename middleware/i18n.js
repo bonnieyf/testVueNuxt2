@@ -1,5 +1,3 @@
-
-
 export default function ({ 
   isHMR, app, store, route, params, error, redirect 
 }) {
@@ -9,7 +7,9 @@ export default function ({
   else if (store.state.locales.indexOf(route.params.lang) == -1) { 
       return redirect(`/${store.state.locale}`);
   }
-
-  store.commit('SET_LANG');
+  
+  // console.log('middleware')
+  // store.dispatch('SITEINFO')
+  // store.commit('SET_LANG');
 
 }
