@@ -7,6 +7,7 @@
       </div>
     </div>
     <div class="txt-img">
+      
       <img src="~assets/imgs/template-img3.jpg">
     </div>
   </div>
